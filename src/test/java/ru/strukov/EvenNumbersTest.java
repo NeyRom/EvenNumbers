@@ -39,9 +39,9 @@ class EvenNumbersTest {
             int actual = num % 2;
             Assertions.assertEquals(expected, actual);
         }
-        int[] numbersClone = numbers.clone();
-        Arrays.sort(numbersClone);
-        Assertions.assertArrayEquals(numbersClone, numbers);
+        int[] numbersCopy = Arrays.copyOfRange(numbers, 0, numbers.length);
+        Arrays.sort(numbersCopy);
+        Assertions.assertArrayEquals(numbersCopy, numbers);
     }
 
     @AfterEach
