@@ -39,7 +39,7 @@ class EvenNumbersTest {
             int actual = num % 2;
             Assertions.assertEquals(expected, actual);
         }
-        int[] numbersCopy = Arrays.copyOfRange(numbers, 0, numbers.length);
+        int[] numbersCopy = Arrays.copyOf(numbers, numbers.length);
         Arrays.sort(numbersCopy);
         Assertions.assertArrayEquals(numbersCopy, numbers);
     }
