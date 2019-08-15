@@ -8,15 +8,10 @@ import java.util.ArrayList;
  * Created by Roman Strukov on 15.08.2019.
  */
 
-public class EvenNumbers {
-//    public static void main(String[] args) {
-//        int[] numbers = getEvenNumbers("34;45;52352;323;32;43;44;680;51;80");
-//        for (int num : numbers) {
-//            System.out.println(num);
-//        }
-//    }
+class EvenNumbers {
 
-    public static int[] getEvenNumbers(String row) {
+    @SuppressWarnings("WeakerAccess")
+    public int[] getEvenNumbers(String row) {
         ArrayList<Integer> numbers = new ArrayList<>();
         try (StringReader reader = new StringReader(row)) {
             int i;

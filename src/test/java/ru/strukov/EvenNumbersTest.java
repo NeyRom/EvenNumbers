@@ -1,36 +1,51 @@
 package ru.strukov;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
  * Created by Roman Strukov on 15.08.2019.
  */
 
-public class EvenNumbersTest {
-    private static EvenNumbers evenNumbers;
-    private static String testData;
+class EvenNumbersTest {
+    private EvenNumbers evenNumbers;
+    private String testData;
 
-    @BeforeAll
-    static void initTest() {
+    @BeforeEach
+    void setUp() {
         Random random = new Random(System.currentTimeMillis());
         StringBuilder builder = new StringBuilder();
-        int iteration = random.nextInt(10000);
+        int iteration = random.nextInt(150000) + 2;
         for (int i = 0; i < iteration; i++) {
-            builder.append(random.nextInt(100000));
+            int number = random.nextInt(90000) + 2;
+            builder.append(number);
             builder.append(";");
         }
+        builder.deleteCharAt(builder.length() - 1);
         testData = builder.toString();
         evenNumbers = new EvenNumbers();
-
     }
 
-    @AfterAll
-    static void afterTest() {
+    @Test
+    void getEvenNumberTest() {
+        int[] numbers = evenNumbers.getEvenNumbers(testData);
+        int expected = 0;
+        for (int num : numbers) {
+            int actual = num % 2;
+            Assertions.assertEquals(expected, actual);
+        }
+        int[] numbersClone = numbers.clone();
+        Arrays.sort(numbersClone);
+        Assertions.assertArrayEquals(numbersClone, numbers);
+    }
+
+    @AfterEach
+    void tearDown() {
         evenNumbers = null;
     }
-
-
 }
